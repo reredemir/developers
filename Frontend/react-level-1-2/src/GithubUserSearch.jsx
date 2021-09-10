@@ -31,7 +31,8 @@ export default function GithubUserSearch() {
         if(error.response.status === 403) {
           alert('Vous avez dépassé le nombre maximales de requêtes, veuillez patienter avant de recommencer, merci.')
         }
-        console.log(error.response);
+
+        console.error(error.response);
       })
       .finally(() => {
         setIsLoading(false);
@@ -60,7 +61,8 @@ export default function GithubUserSearch() {
         if(error.response.status === 403) {
           alert('Vous avez dépassé le nombre maximales de requêtes, veuillez patienter avant de recommencer, merci.')
         }
-        console.log(error.response);
+
+        console.error(error.response);
       })
       .finally(() => {
         setIsLoading(false);
@@ -76,7 +78,7 @@ export default function GithubUserSearch() {
             autoFocus
             loading={isLoading}
             icon='search'
-            placeholder='Chercher des dépôts github'
+            placeholder='Chercher des users github'
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
           />
