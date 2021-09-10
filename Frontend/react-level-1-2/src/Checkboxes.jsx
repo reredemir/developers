@@ -15,7 +15,6 @@ export default function Checkboxes() {
   const [isChecked, setIsChecked] = useState(
     new Array(items.length).fill(false)
   );
-  console.log('isChecked :', isChecked);
 
   // Function to handdle changes on items checkboxes 
   const handleIsCheckChange = (position) => {
