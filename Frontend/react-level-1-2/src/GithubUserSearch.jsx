@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Message,
-  Form,
-  Input,
-  Segment,
-} from 'semantic-ui-react';
+import { Message, Form, Input, Segment } from 'semantic-ui-react';
 import axios from 'axios';
 import UsersResults from './UsersResults';
 import './styles/githubUserSearch.scss';
@@ -28,8 +23,10 @@ export default function GithubUserSearch() {
         setUsersData(response.data);
       })
       .catch((error) => {
-        if(error.response.status === 403) {
-          alert('Vous avez dépassé le nombre maximales de requêtes, veuillez patienter avant de recommencer, merci.')
+        if (error.response.status === 403) {
+          alert(
+            'Vous avez dépassé le nombre maximales de requêtes, veuillez patienter avant de recommencer, merci.'
+          );
         }
 
         console.error(error.response);
@@ -58,8 +55,10 @@ export default function GithubUserSearch() {
         setUsersData(newUsersData);
       })
       .catch((error) => {
-        if(error.response.status === 403) {
-          alert('Vous avez dépassé le nombre maximales de requêtes, veuillez patienter avant de recommencer, merci.')
+        if (error.response.status === 403) {
+          alert(
+            'Vous avez dépassé le nombre maximales de requêtes, veuillez patienter avant de recommencer, merci.'
+          );
         }
 
         console.error(error.response);
@@ -87,7 +86,8 @@ export default function GithubUserSearch() {
       {usersData ? (
         <>
           <Message>
-            La recherche a renvoyé {usersData.total_count} {usersData.items.length > 1 ? 'résultats' : 'résulat'}
+            La recherche a renvoyé {usersData.total_count}{' '}
+            {usersData.items.length > 1 ? 'résultats' : 'résulat'}
           </Message>
           <UsersResults
             isLoading={isLoading}

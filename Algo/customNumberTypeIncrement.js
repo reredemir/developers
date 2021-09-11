@@ -1,4 +1,4 @@
-const main = (num) => {
+const customNumberTypeIncrement = (num) => {
   //On retourne le tableau pour pouvoir le parcourir dans le bon sens dans un for of
   num.reverse();
 
@@ -26,7 +26,6 @@ const main = (num) => {
   return num;
 }
 
-console.log(main([9, 9]))
+console.log(customNumberTypeIncrement([9, 9]))
 
-
-
+module.exports = customNumberTypeIncrement;

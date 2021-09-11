@@ -16,3 +16,5 @@ const fizzBuzz = (length) => {
 };
 
 console.log(fizzBuzz(45));
+
+module.exports = fizzBuzz;

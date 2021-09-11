@@ -1,4 +1,4 @@
-import React, { useState, useMemo,useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Checkbox } from 'semantic-ui-react';
 import './styles/checkboxes.scss';
 
@@ -11,44 +11,41 @@ const items = [
 ];
 
 const useCheckboxes = () => {
-    // Hook for select one by one each checkbox
-    const [isChecked, setIsChecked] = useState(
-      new Array(items.length).fill(false)
-    );
-  
-    // Function to handle changes on items checkboxes 
-    const handleIsCheckChange = useCallback((position) => {
+  const [isChecked, setIsChecked] = useState(
+    new Array(items.length).fill(false)
+  );
+
+  const handleIsCheckChange = useCallback(
+    (position) => {
       const updatedIsChecked = isChecked.map((item, index) =>
         index === position ? !item : item
       );
-  
+
       setIsChecked(updatedIsChecked);
-    }, [isChecked])
-  
-    // Function to handle changes on select / unselect checkbox
-    const isCheckedAll = useMemo(() => 
-    isChecked.every((i) => i === true), 
-    [isChecked]);
-  
-    const toggleCheckedAll = useCallback(() => {
-      setIsChecked(new Array(items.length).fill(!isCheckedAll))
-    }, [isCheckedAll])
+    },
+    [isChecked]
+  );
 
-    return {
-      handleIsCheckChange,
-      isChecked,
-      toggleCheckedAll,
-      isCheckedAll
-    }
-}
+  const isCheckedAll = useMemo(
+    () => isChecked.every((i) => i === true),
+    [isChecked]
+  );
 
-export default function Checkboxes() {
-  const {
+  const toggleCheckedAll = useCallback(() => {
+    setIsChecked(new Array(items.length).fill(!isCheckedAll));
+  }, [isCheckedAll]);
+
+  return {
     handleIsCheckChange,
     isChecked,
     toggleCheckedAll,
-    isCheckedAll
-  } = useCheckboxes()
+    isCheckedAll,
+  };
+};
+
+export default function Checkboxes() {
+  const { handleIsCheckChange, isChecked, toggleCheckedAll, isCheckedAll } =
+    useCheckboxes();
 
   return (
     <div className='container-checkboxes'>
