@@ -11,10 +11,14 @@ const items = [
 ];
 
 const useCheckboxes = () => {
+
+  // Init state with an array depends on datas' array length filled with false as default value for checkboxes checked status
   const [isChecked, setIsChecked] = useState(
     new Array(items.length).fill(false)
   );
 
+  // Function to handle the change on checkbox of our items depends on position (index) received in argument, 
+  // then if received position (index) matches with map index so reverse boolean of our item and update the state
   const handleIsCheckChange = useCallback(
     (position) => {
       const updatedIsChecked = isChecked.map((item, index) =>
@@ -26,11 +30,13 @@ const useCheckboxes = () => {
     [isChecked]
   );
 
+  // Function to check on each render if our array of boolean are all on true, if it is then return true to send it to our selectAll checkbox attribute 'checked'
   const isCheckedAll = useMemo(
     () => isChecked.every((i) => i === true),
     [isChecked]
   );
 
+  // Function to handle the change on checkbox select all / unselect all, it will fill our state array with the reverse boolean returned by isCheckedAll
   const toggleCheckedAll = useCallback(() => {
     setIsChecked(new Array(items.length).fill(!isCheckedAll));
   }, [isCheckedAll]);
@@ -49,12 +55,14 @@ export default function Checkboxes() {
 
   return (
     <div className='container-checkboxes'>
+      {/* Checkbox for select / unselect All */}
       <Checkbox
         label={isCheckedAll ? 'Unselect all' : 'Select all'}
         checked={isCheckedAll}
         onClick={toggleCheckedAll}
       />
 
+      {/* Checkboxes mapped on items' datas */}
       {items.map((item, index) => (
         <Checkbox
           key={item.id}
